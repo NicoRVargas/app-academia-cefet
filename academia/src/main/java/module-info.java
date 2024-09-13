@@ -1,6 +1,7 @@
 module com.nico.cefet.academia {
     requires javafx.controls;
     requires javafx.fxml;
+    requires com.opencsv;
 
 
     opens com.nico.cefet.academia to javafx.fxml;

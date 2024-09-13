@@ -1,7 +1,6 @@
-package com.nico.cefet.academia.service;
+package com.nico.cefet.academia.entity;
 
 public class Treino {
-    private String descricao;
     private String cargaMaxima;
     private String repeticoes;
     private String nome;
@@ -24,7 +23,6 @@ public class Treino {
     }
 
     public Treino() {
-        this.descricao = null;
         this.cargaMaxima = null;
         this.repeticoes = null;
         this.nome = null;
@@ -35,25 +33,20 @@ public class Treino {
         return nome;
     }
 
+    public String getDescricao(){
+        return nome + "\n" + cargaMaxima + "\n" + repeticoes + "\n" + grupoMuscular;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public Treino(String descricao, String cargaMaxima, String repeticoes, String nome, String grupoMuscular) {
-        this.descricao = descricao;
+    public Treino(String cargaMaxima, String repeticoes, String nome, String grupoMuscular) {
         this.cargaMaxima = cargaMaxima;
         this.repeticoes = repeticoes;
         this.nome = nome;
         this.grupoMuscular = grupoMuscular;
 
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public String getCargaMaxima() {
