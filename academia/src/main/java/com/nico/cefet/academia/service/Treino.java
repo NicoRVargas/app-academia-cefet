@@ -1,4 +1,4 @@
-package com.nico.cefet.academia.classes;
+package com.nico.cefet.academia.service;
 
 public class Treino {
     private String descricao;

@@ -1,4 +1,6 @@
-package com.nico.cefet.academia.classes;
+package com.nico.cefet.academia.service;
+
+import com.nico.cefet.academia.exception.DuplicidadeException;
 
 import java.util.ArrayList;
 import java.util.List;

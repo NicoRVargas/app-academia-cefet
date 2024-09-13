@@ -1,8 +1,8 @@
-package com.nico.cefet.academia;
+package com.nico.cefet.academia.controller;
 
-import com.nico.cefet.academia.classes.DuplicidadeException;
-import com.nico.cefet.academia.classes.FichaTreino;
-import com.nico.cefet.academia.classes.Treino;
+import com.nico.cefet.academia.exception.DuplicidadeException;
+import com.nico.cefet.academia.service.FichaTreino;
+import com.nico.cefet.academia.service.Treino;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
