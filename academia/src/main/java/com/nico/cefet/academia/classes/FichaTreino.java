@@ -41,7 +41,7 @@ public void exercicioRepetido(int dia, Treino treino) throws DuplicidadeExceptio
         };
     }
 
-    public int conversaoDiaSemana(String diaSemana) {
+    public int      conversaoDiaSemana(String diaSemana) {
         return switch (diaSemana) {
             case "Domingo" -> 0;
             case "Segunda" -> 1;

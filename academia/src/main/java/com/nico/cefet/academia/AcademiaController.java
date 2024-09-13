@@ -24,85 +24,97 @@ public class AcademiaController implements Initializable {
     private TextArea descricaoField;
 
     @FXML
-    private TextArea valueDescription;
+    private TextArea nomeField;
 
     @FXML
-    private RadioButton cafeManha;
+    private TextArea cargaValue;
 
     @FXML
-    private RadioButton lancheManha;
+    private TextArea repeticoesValue;
 
     @FXML
-    private RadioButton almoco;
+    private RadioButton peito;
 
     @FXML
-    private RadioButton lancheTarde;
+    private RadioButton biceps;
 
     @FXML
-    private RadioButton jantar;
+    private RadioButton triceps;
 
     @FXML
-    private RadioButton ceia;
+    private RadioButton costas;
+
+    @FXML
+    private RadioButton perna;
+
+    @FXML
+    private RadioButton ombro;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        cafeManha.setToggleGroup(grupoBotoes);
-        cafeManha.setSelected(true);
-        lancheManha.setToggleGroup(grupoBotoes);
-        almoco.setToggleGroup(grupoBotoes);
-        lancheTarde.setToggleGroup(grupoBotoes);
-        jantar.setToggleGroup(grupoBotoes);
-        ceia.setToggleGroup(grupoBotoes);
+        peito.setToggleGroup(grupoBotoes);
+        peito.setSelected(true);
+        biceps.setToggleGroup(grupoBotoes);
+        triceps.setToggleGroup(grupoBotoes);
+        costas.setToggleGroup(grupoBotoes);
+        perna.setToggleGroup(grupoBotoes);
+        ombro.setToggleGroup(grupoBotoes);
         diaDaSemana.getItems().addAll("Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sabado");
     }
 
     public void Incluir(){
         String botaoSelecionado = ((RadioButton)grupoBotoes.getSelectedToggle()).getText();
         String diaSelecionado = diaDaSemana.getSelectionModel().getSelectedItem();
-        int tipoSelecionado = fichaTreino.conversaotipoRefeicao(botaoSelecionado);
         int diaSemanaSelecionado = fichaTreino.conversaoDiaSemana(diaSelecionado);
-        Treino treino = new Treino(descricaoField.getText(), valueDescription.getText());
+        Treino treino = new Treino(descricaoField.getText(), cargaValue.getText(), repeticoesValue.getText(), nomeField.getText(), botaoSelecionado);
 
         try{
-            fichaTreino.cadastrarRefeicao(tipoSelecionado, diaSemanaSelecionado, treino);
+            fichaTreino.cadastrarTreino(diaSemanaSelecionado, treino);
+            System.out.println(fichaTreino.getFicha()[diaSemanaSelecionado].get(0));
         } catch (DuplicidadeException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void Remover(){
-        String botaoSelecionado = ((RadioButton)grupoBotoes.getSelectedToggle()).getText();
-        String diaSelecionado = diaDaSemana.getSelectionModel().getSelectedItem();
-        int tipoSelecionado = fichaTreino.conversaotipoRefeicao(botaoSelecionado);
-        int diaSemanaSelecionado = fichaTreino.conversaoDiaSemana(diaSelecionado);
-        fichaTreino.removerRefeicao(tipoSelecionado, diaSemanaSelecionado);
-    }
+//    public void Remover(){
+//        String botaoSelecionado = ((RadioButton)grupoBotoes.getSelectedToggle()).getText();
+//        String diaSelecionado = diaDaSemana.getSelectionModel().getSelectedItem();
+//        int tipoSelecionado = fichaTreino.conversaoGrupoMuscular(botaoSelecionado);
+//        int diaSemanaSelecionado = fichaTreino.conversaoDiaSemana(diaSelecionado);
+//        fichaTreino.removerTreino(tipoSelecionado, diaSemanaSelecionado);
+//    }
+//
+//    public void Consultar(){
+//        String botaoSelecionado = ((RadioButton)grupoBotoes.getSelectedToggle()).getText();
+//        String diaSelecionado = diaDaSemana.getSelectionModel().getSelectedItem();
+//        int tipoSelecionado = fichaTreino.conversaoDiaSemana(botaoSelecionado);
+//        int diaSemanaSelecionado = fichaTreino.conversaoDiaSemana(diaSelecionado);
+//        Treino treino = fichaTreino.consultarTreino(tipoSelecionado, diaSemanaSelecionado);
+//
+//        descricaoField.setText(treino.getDescricao());
+//        nomeField.setText(treino.getNome());
+//        cargaValue.setText(treino.getCargaMaxima());
+//    }
+//
+//    public void Alterar(){
+//        String botaoSelecionado = ((RadioButton)grupoBotoes.getSelectedToggle()).getText();
+//        String diaSelecionado = diaDaSemana.getSelectionModel().getSelectedItem();
+//        int tipoSelecionado = fichaTreino.conversaoGrupoMuscular(botaoSelecionado);
+//        int diaSemanaSelecionado = fichaTreino.conversaoDiaSemana(diaSelecionado);
+//
+//        Treino treino = new Treino(descricaoField.getText(), cargaValue.getText(), repeticoesValue.getText(), nomeField.getText());
+//
+//        fichaTreino.sobrescreverTreino(tipoSelecionado, diaSemanaSelecionado, treino);
+//    }
 
-    public void Consultar(){
-        String botaoSelecionado = ((RadioButton)grupoBotoes.getSelectedToggle()).getText();
-        String diaSelecionado = diaDaSemana.getSelectionModel().getSelectedItem();
-        int tipoSelecionado = fichaTreino.conversaoDiaSemana(botaoSelecionado);
-        int diaSemanaSelecionado = fichaTreino.conversaoDiaSemana(diaSelecionado);
-        Treino treino = fichaTreino.consultarRefeicao(tipoSelecionado, diaSemanaSelecionado);
-
-        descricaoField.setText(treino.getDescricao());
-        valueDescription.setText(treino.getValorCalorico());
-    }
-
-    public void Alterar(){
-        String botaoSelecionado = ((RadioButton)grupoBotoes.getSelectedToggle()).getText();
-        String diaSelecionado = diaDaSemana.getSelectionModel().getSelectedItem();
-        int tipoSelecionado = fichaTreino.conversaotipoRefeicao(botaoSelecionado);
-        int diaSemanaSelecionado = fichaTreino.conversaoDiaSemana(diaSelecionado);
-
-        Treino treino = new Treino(descricaoField.getText(), valueDescription.getText());
-
-        fichaTreino.sobrescreverRefeicao(tipoSelecionado, diaSemanaSelecionado, treino);
+    public void Voltar() {
+        System.out.println("Voltando...");
     }
 
     public void Limpar(){
         descricaoField.setText("");
-        valueDescription.setText("");
-        cafeManha.setSelected(true);
+        nomeField.setText("");
+        cargaValue.setText("");
+        peito.setSelected(true);
     }
 }
