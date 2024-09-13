@@ -1,4 +1,4 @@
-package com.nico.cefet.cardapio.classes;
+package com.nico.cefet.academia.classes;
 
 public class DuplicidadeException extends Exception{
     public DuplicidadeException(){

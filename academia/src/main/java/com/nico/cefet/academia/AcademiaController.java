@@ -1,20 +1,20 @@
-package com.nico.cefet.cardapio;
+package com.nico.cefet.academia;
 
-import com.nico.cefet.cardapio.classes.Cardapio;
-import com.nico.cefet.cardapio.classes.DuplicidadeException;
-import com.nico.cefet.cardapio.classes.Refeicao;
-import javafx.application.Application;
+import com.nico.cefet.academia.classes.DuplicidadeException;
+import com.nico.cefet.academia.classes.FichaTreino;
+import com.nico.cefet.academia.classes.Treino;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import javafx.application.Application;
-import javafx.stage.Stage;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleGroup;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CardapioController implements Initializable {
-    private Cardapio cardapio = new Cardapio();
+public class AcademiaController implements Initializable {
+    private FichaTreino fichaTreino = new FichaTreino();
     private ToggleGroup grupoBotoes = new ToggleGroup();
 
     @FXML
@@ -59,12 +59,12 @@ public class CardapioController implements Initializable {
     public void Incluir(){
         String botaoSelecionado = ((RadioButton)grupoBotoes.getSelectedToggle()).getText();
         String diaSelecionado = diaDaSemana.getSelectionModel().getSelectedItem();
-        int tipoSelecionado = cardapio.conversaotipoRefeicao(botaoSelecionado);
-        int diaSemanaSelecionado = cardapio.conversaoDiaSemana(diaSelecionado);
-        Refeicao refeicao = new Refeicao(descricaoField.getText(), valueDescription.getText());
+        int tipoSelecionado = fichaTreino.conversaotipoRefeicao(botaoSelecionado);
+        int diaSemanaSelecionado = fichaTreino.conversaoDiaSemana(diaSelecionado);
+        Treino treino = new Treino(descricaoField.getText(), valueDescription.getText());
 
         try{
-            cardapio.cadastrarRefeicao(tipoSelecionado, diaSemanaSelecionado, refeicao);
+            fichaTreino.cadastrarRefeicao(tipoSelecionado, diaSemanaSelecionado, treino);
         } catch (DuplicidadeException e) {
             throw new RuntimeException(e);
         }
@@ -73,31 +73,31 @@ public class CardapioController implements Initializable {
     public void Remover(){
         String botaoSelecionado = ((RadioButton)grupoBotoes.getSelectedToggle()).getText();
         String diaSelecionado = diaDaSemana.getSelectionModel().getSelectedItem();
-        int tipoSelecionado = cardapio.conversaotipoRefeicao(botaoSelecionado);
-        int diaSemanaSelecionado = cardapio.conversaoDiaSemana(diaSelecionado);
-        cardapio.removerRefeicao(tipoSelecionado, diaSemanaSelecionado);
+        int tipoSelecionado = fichaTreino.conversaotipoRefeicao(botaoSelecionado);
+        int diaSemanaSelecionado = fichaTreino.conversaoDiaSemana(diaSelecionado);
+        fichaTreino.removerRefeicao(tipoSelecionado, diaSemanaSelecionado);
     }
 
     public void Consultar(){
         String botaoSelecionado = ((RadioButton)grupoBotoes.getSelectedToggle()).getText();
         String diaSelecionado = diaDaSemana.getSelectionModel().getSelectedItem();
-        int tipoSelecionado = cardapio.conversaotipoRefeicao(botaoSelecionado);
-        int diaSemanaSelecionado = cardapio.conversaoDiaSemana(diaSelecionado);
-        Refeicao refeicao = cardapio.consultarRefeicao(tipoSelecionado, diaSemanaSelecionado);
+        int tipoSelecionado = fichaTreino.conversaoDiaSemana(botaoSelecionado);
+        int diaSemanaSelecionado = fichaTreino.conversaoDiaSemana(diaSelecionado);
+        Treino treino = fichaTreino.consultarRefeicao(tipoSelecionado, diaSemanaSelecionado);
 
-        descricaoField.setText(refeicao.getDescricao());
-        valueDescription.setText(refeicao.getValorCalorico());
+        descricaoField.setText(treino.getDescricao());
+        valueDescription.setText(treino.getValorCalorico());
     }
 
     public void Alterar(){
         String botaoSelecionado = ((RadioButton)grupoBotoes.getSelectedToggle()).getText();
         String diaSelecionado = diaDaSemana.getSelectionModel().getSelectedItem();
-        int tipoSelecionado = cardapio.conversaotipoRefeicao(botaoSelecionado);
-        int diaSemanaSelecionado = cardapio.conversaoDiaSemana(diaSelecionado);
+        int tipoSelecionado = fichaTreino.conversaotipoRefeicao(botaoSelecionado);
+        int diaSemanaSelecionado = fichaTreino.conversaoDiaSemana(diaSelecionado);
 
-        Refeicao refeicao = new Refeicao(descricaoField.getText(), valueDescription.getText());
+        Treino treino = new Treino(descricaoField.getText(), valueDescription.getText());
 
-        cardapio.sobrescreverRefeicao(tipoSelecionado, diaSemanaSelecionado, refeicao);
+        fichaTreino.sobrescreverRefeicao(tipoSelecionado, diaSemanaSelecionado, treino);
     }
 
     public void Limpar(){
