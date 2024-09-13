@@ -44,7 +44,6 @@ public class HomeDocumentController implements Initializable {
                     TextArea child = (TextArea) treinoGridPane.getChildren().get(dia * treinoGridPane.getColumnCount() + i);;
 
                     child.setText(treino.getDescricao());
-                    System.out.println(treino.getDescricao() + " " + dia + " " + i);
                 } else {
                     TextArea child = (TextArea) treinoGridPane.getChildren().get(dia * treinoGridPane.getColumnCount() + i);
                     child.setText("");
@@ -52,31 +51,6 @@ public class HomeDocumentController implements Initializable {
             }
         }
     }
-
-//    public void UpdateGridPane(){
-//        Treino[][] ficha = fichaTreino.getFicha();
-//// ... add children to the gridPane ...
-//
-//// Create a 2D array to store child nodes
-//        Node[][] childNodes = new Node[treinoGridPane.getRowCount()][treinoGridPane.getColumnCount()];
-//
-//// Populate the 2D array
-//        int i = 1;
-//        for (Node node : treinoGridPane.getChildren()) {
-//
-////            Integer row = GridPane.getRowIndex(node);
-////            Integer column = GridPane.getColumnIndex(node);
-////            if (row != null && column != null) {
-////                childNodes[row][column] = node;
-////                if (node instanceof TextArea textArea) {
-////                    textArea.setText(ficha[column][row].getDescricao());
-////                }
-////            }
-//            System.out.println(node);
-//            System.out.println(i);
-//            i++;
-//        }
-//    }
 
     public void setupSceneListener(Stage stage) {
         stage.sceneProperty().addListener((observable, oldScene, newScene) -> {
@@ -93,6 +67,5 @@ public class HomeDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ReadData();
         UpdateGridPane();
-        System.out.println("receba");
     }
 }

@@ -11,7 +11,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -108,21 +107,20 @@ public class FichaTreino {
             List<String[]> data = reader.readAll();
             reader.close();
 
-            // Sort the lines to delete in descending order to avoid index issues
+            // Organiza as linhas para deletar em ordem decrescente para evitar problemas de indexação
             Collections.sort(linesToDelete, Collections.reverseOrder());
 
-            // Remove the specified lines
+            // Remove as linhas especificadas
             for (int lineToDelete : linesToDelete) {
                 data.remove(lineToDelete);
             }
 
-            // Write the modified data to the output CSV file
+            // Escreve os dados modificados no arquivo de saida CSV
             FileWriter fileWriter = new FileWriter(CSV_FILE_PATH, false);
             CSVWriter writer = new CSVWriter(fileWriter);
             writer.writeAll(data);
             writer.close();
 
-            System.out.println("Lines " + linesToDelete + " deleted successfully.");
         } catch (IOException | CsvException e) {
             System.err.println("Error deleting lines: " + e.getMessage());
         }
@@ -176,7 +174,7 @@ public class FichaTreino {
 
         try (FileWriter fileWriter = new FileWriter(CSV_FILE_PATH, true);
              CSVWriter writer = new CSVWriter(fileWriter)) {
-            // Check if the file is empty
+            // Checa se o arquivo está vazio
             if (treinoFile.length() == 0) {
                 String[] header = {"Identifier", "Dia", "Numero do Treino", "Nome", "Carga Maxima", "Repetições", "Grupo Muscular"};
                 writer.writeNext(header);

@@ -35,7 +35,7 @@ public class LoginController {
     void Login(ActionEvent event) {
         try {
             if(gerenciadorCadastro.login(loginField.getText(), passwordField.getText())) {
-                System.out.println("logado");
+                // Luccao: Pop up de logado aq
                 fichaTreino.carregarTreino(Login.getUsuarioLogado());
                 AcademiaApplication.changeScreen("home");
             } else {
